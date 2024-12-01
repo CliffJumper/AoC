@@ -42,10 +42,9 @@ fn find_similarity_hash(first_list: Vec<usize>, second_list: Vec<usize>) -> usiz
     for item in second_list.iter() {
         second_count.insert(
             item,
-            1 + if second_count.contains_key(item) {
-                second_count[item]
-            } else {
-                0
+            match second_count.contains_key(item) {
+                true => second_count[item] + 1,
+                false => 1,
             },
         );
     }
